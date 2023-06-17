@@ -6,9 +6,10 @@ class PurposeSerializer(serializers.ModelSerializer):
     customer = CustomerSerializer(read_only=True)
     value = serializers.IntegerField()
 
-    def validate_customer(self, customer: str) -> str:
+    def validate_customer(self, customer: CustomerSerializer) -> CustomerSerializer:
         if not customer:
-            raise serializers.ValidationError("Customer not be null")
+            raise serializers.ValidationError("Customer not to be null.")
+        return customer
 
     def validate_value(self, value: int) -> int:
         if value <= 0:
@@ -20,5 +21,5 @@ class PurposeSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Purpose
-        fields = ['id', 'customer', 'value', 'accepted']
+        fields = ['id', 'customer', 'value', 'accepted', '-created_at']
         
