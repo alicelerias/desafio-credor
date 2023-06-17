@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'desafiocredor.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'credor_db',
+        'USER': 'postgres',
+        'PASSWORD': '1234',
+        'HOST': 'credor_db',  # This will be the Docker container hostname
+        'PORT': 5432,  # Default PostgreSQL port
     }
 }
 
