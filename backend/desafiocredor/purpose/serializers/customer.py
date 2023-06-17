@@ -14,7 +14,7 @@ class CustomerSerializer(serializers.ModelSerializer):
     def validate_cpf(self, cpf: int) -> int:
         if not cpf:
             raise serializers.ValidationError("Insert a valid cpf")
-        if len(cpf) != 11:
+        if len(str(cpf)) != 11:
             raise serializers.ValidationError("Cpf must be 11 digits")
         return cpf
     
@@ -28,4 +28,4 @@ class CustomerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Customer
-        fields = ['id', 'name', 'cpf', 'adress', '-created_at']
+        fields = ['id', 'name', 'cpf', 'adress']

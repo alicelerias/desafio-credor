@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from ..models import Purpose
+from ..models import Proposal
 from .customer import CustomerSerializer
 
-class PurposeSerializer(serializers.ModelSerializer):
+class ProposalSerializer(serializers.ModelSerializer):
     customer = CustomerSerializer(read_only=True)
     value = serializers.IntegerField()
 
@@ -16,10 +16,10 @@ class PurposeSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Value must be greater than zero.")
         return value
     
-    def create(self, validated_data) -> Purpose:
-        return Purpose.objects.create(**validated_data)
+    def create(self, validated_data) -> Proposal:
+        return Proposal.objects.create(**validated_data)
     
     class Meta:
-        model = Purpose
-        fields = ['id', 'customer', 'value', 'accepted', '-created_at']
+        model = Proposal
+        fields = ['id', 'customer', 'value', 'accepted']
         

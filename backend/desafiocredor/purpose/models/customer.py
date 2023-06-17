@@ -7,7 +7,7 @@ from .mixins import TimestampedModel
 
 class Customer(TimestampedModel, User, models.Model):
     name = models.CharField(max_length=150)
-    cpf = models.IntegerField()
+    cpf = models.BigIntegerField()
     adress = models.CharField(max_length=200)
 
     def __str__(self):
