@@ -79,7 +79,7 @@ DATABASES = {
         'NAME': 'credor_db',
         'USER': 'postgres',
         'PASSWORD': '1234',
-        'HOST': 'credor_db',  # This will be the Docker container hostname
+        'HOST': 'localhost',  # This will be the Docker container hostname
         'PORT': 5432,  # Default PostgreSQL port
     }
 }
