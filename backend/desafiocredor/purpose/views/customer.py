@@ -19,6 +19,9 @@ class CustomerProposalView(APIView):
                 "proposal": proposal_serializer.data
             }
 
+            
+
+
             return Response(response_data, status=status.HTTP_201_CREATED)
 
         return Response({"error": "Invalid data"}, status=status.HTTP_400_BAD_REQUEST)

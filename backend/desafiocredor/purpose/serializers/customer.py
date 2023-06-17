@@ -2,9 +2,15 @@ from rest_framework import serializers
 from ..models import Customer
 
 class CustomerSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(max_length=100)
     name = serializers.CharField(max_length=150)
     cpf = serializers.IntegerField()
     adress = serializers.CharField(max_length=200)
+
+    def validate_username(self, username: str) -> str:
+        if not username:
+            raise serializers.ValidationError("Insert a valid name")
+        return username
 
     def validate_name(self, name: str) -> str:
         if not name:
@@ -28,4 +34,4 @@ class CustomerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Customer
-        fields = ['id', 'name', 'cpf', 'adress']
+        fields = ['id', 'username', 'name', 'cpf', 'adress']
