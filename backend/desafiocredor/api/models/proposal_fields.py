@@ -10,7 +10,9 @@ class ProposalFields(TimestampedModel, models.Model):
     )
 
     name = models.CharField(
-        primary_key=True, max_length=20, null=False, blank=False
+        primary_key=True, 
+        max_length=20,
+        null=False, blank=False
     )
     type = models.CharField(
         max_length=10, choices=FORM_CHOICES, null=False, default="string"
