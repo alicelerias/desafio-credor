@@ -18,6 +18,7 @@ class ProposalFields(TimestampedModel, models.Model):
         max_length=10, choices=FORM_CHOICES, null=False, default="string"
     )
     nullable = models.BooleanField(default=True)
+    #ordem em que os componentes serão mostrados na tela do django admin
     order = models.FloatField()
 
     def __str__(self) -> str:
