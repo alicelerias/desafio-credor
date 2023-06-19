@@ -16,5 +16,3 @@ def process_proposal(proposal_id):
         print(f"Proposal {proposal_obj.status}")
     except Proposal.DoesNotExist:
         print("Proposal not found")
-
-

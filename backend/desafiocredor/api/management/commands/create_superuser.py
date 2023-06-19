@@ -14,5 +14,7 @@ class Command(BaseCommand):
         if not admin_password and User.objects.filter(username="admin").exists():
             return
 
-        User.objects.create_superuser(username="admin", password=admin_password, email="")
+        User.objects.create_superuser(
+            username="admin", password=admin_password, email=""
+        )
         self.stdout.write(self.style.SUCCESS("Superuser created successfully."))
