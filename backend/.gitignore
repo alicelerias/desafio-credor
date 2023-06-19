@@ -57,3 +57,4 @@ pyproject.toml
 
 .vscode
 
+.envrc
