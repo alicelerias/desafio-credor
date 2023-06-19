@@ -24,8 +24,10 @@ def create_proposal(request):
             }
             return Response(response_data, status=status.HTTP_201_CREATED)
         else:
-            proposal_obj = Proposal.objects.get(proposal.id)
+            proposal_obj = Proposal.objects.get(pk=proposal.id)
+            print("TEST", proposal_obj)
             proposal_obj.delete()
+            print("TEST", proposal_obj)
             return Response(response_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     else: 
         return Response(proposal_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
