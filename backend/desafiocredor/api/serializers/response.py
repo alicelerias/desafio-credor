@@ -5,4 +5,4 @@ from ..models import Response
 class ResponseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Response
-        fields = ("name", "value", "proposal")
+        fields = ("key", "value", "proposal")
