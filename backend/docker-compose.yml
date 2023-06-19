@@ -1,0 +1,61 @@
+version: '3'
+services:
+  api:
+    build:
+      dockerfile: ./docker/api
+    ports:
+      - "8000:8000"
+    environment:
+      - ADMIN_PASSWORD=admin
+      - DJANGO_SETTINGS_MODULE=desafiocredor.settings
+      - POSTGRES_DB=credor_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_HOST=postgres
+      - RABBITQM_HOST=rabbitmq
+      - RABBITQM_USER=guest
+      - RABBITQM_PASSWORD=guest
+      - RABBITQM_PORT=5672
+    depends_on:
+      - postgres|
+      - rabbitmq
+    command: >
+      sh -c "sleep 10 && python manage.py migrate && python manage.py create_superuser && python manage.py runserver 0.0.0.0:8000"
+
+  worker:
+    build:
+      dockerfile: ./docker/worker
+    environment:
+      - DJANGO_SETTINGS_MODULE=desafiocredor.settings
+      - POSTGRES_DB=credor_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_HOST=postgres
+      - RABBITQM_HOST=rabbitmq
+      - RABBITQM_USER=guest
+      - RABBITQM_PASSWORD=guest
+      - RABBITQM_PORT=5672
+    depends_on:
+      - postgres
+      - rabbitmq
+      - api
+      
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=credor_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
