@@ -2,6 +2,7 @@ from django.db import models
 from .proposal_fields import ProposalFields
 from .proposal import Proposal
 
+
 class Response(models.Model):
     key = models.ForeignKey(
         ProposalFields,

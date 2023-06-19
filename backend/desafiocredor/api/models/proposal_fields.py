@@ -9,16 +9,12 @@ class ProposalFields(TimestampedModel, models.Model):
         ("number", "Número"),
     )
 
-    name = models.CharField(
-        primary_key=True, 
-        max_length=20,
-        null=False, blank=False
-    )
+    name = models.CharField(primary_key=True, max_length=20, null=False, blank=False)
     type = models.CharField(
         max_length=10, choices=FORM_CHOICES, null=False, default="string"
     )
     nullable = models.BooleanField(default=True)
-    #ordem em que os componentes serão mostrados na tela do django admin
+    # ordem em que os componentes serão mostrados na tela do django admin
     order = models.FloatField()
 
     def __str__(self) -> str:

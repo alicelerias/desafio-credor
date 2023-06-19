@@ -17,9 +17,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="proposalfields",
             name="name",
-            field=models.CharField(
-                max_length=20, primary_key=True, serialize=False
-            ),
+            field=models.CharField(max_length=20, primary_key=True, serialize=False),
         ),
         migrations.CreateModel(
             name="Response",

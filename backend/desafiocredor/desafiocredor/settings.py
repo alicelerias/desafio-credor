@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+from os import getenv
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,9 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = (
-    "django-insecure-p(8qsktplhx51@b*$s2z!x+1v!5r2=^+2o#k_=nfj^a)wa@bvw"
-)
+SECRET_KEY = "django-insecure-p(8qsktplhx51@b*$s2z!x+1v!5r2=^+2o#k_=nfj^a)wa@bvw"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -86,11 +84,11 @@ WSGI_APPLICATION = "desafiocredor.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "credor_db",
-        "USER": "postgres",
-        "PASSWORD": "1234",
-        "HOST": "localhost",  # This will be the Docker container hostname
-        "PORT": 5432,  # Default PostgreSQL port
+        "NAME": getenv("POSTGRES_DB"),
+        "USER": getenv("POSTGRES_USER"),
+        "PASSWORD": getenv("POSTGRES_PASSWORD"),
+        "HOST": getenv("POSTGRES_HOST"),
+        "PORT": int(getenv("POSTGRES_PORT", "5432")),
     }
 }
 
@@ -135,3 +133,16 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Celery Configuration
+CELERY_TIMEZONE = "America/Sao_Paulo"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60  # 30 minutes
+
+RABBITQM_HOST = getenv("RABBITQM_HOST", "127.0.0.1")
+RABBITQM_USER = getenv("RABBITQM_USER", "guest")
+RABBITQM_PASSWORD = getenv("RABBITQM_PASSWORD", "guest")
+RABBITQM_PORT = getenv("RABBITQM_PORT", 5672)
+CELERY_BROKER_URL = (
+    f"amqp://{RABBITQM_USER}:{RABBITQM_PASSWORD}@{RABBITQM_HOST}:{RABBITQM_PORT}"
+)
