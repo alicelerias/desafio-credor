@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from ..serializers import ResponseSerializer, ProposalSerializer
+from ..models import Proposal
 
 @api_view(['POST'])
 def create_proposal(request):
@@ -23,7 +24,8 @@ def create_proposal(request):
             }
             return Response(response_data, status=status.HTTP_201_CREATED)
         else:
-            proposal.delete()
+            proposal_obj = Proposal.objects.get(proposal.id)
+            proposal_obj.delete()
             return Response(response_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     else: 
         return Response(proposal_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
