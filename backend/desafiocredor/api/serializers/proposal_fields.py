@@ -1,8 +1,9 @@
 from rest_framework import serializers
-from ..models import ProposalFields
+
+from ..models import ProposalField
 
 
 class ProposalFieldsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ProposalFields
+        model = ProposalField
         fields = ("name", "type", "nullable", "order")

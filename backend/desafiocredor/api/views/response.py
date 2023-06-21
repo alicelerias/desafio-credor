@@ -1,11 +1,10 @@
+from django.db import transaction
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 
 from ..serializers import ResponseSerializer, ProposalSerializer
 from ..tasks import process_proposal
-
-from django.db import transaction
 
 
 @api_view(["POST"])

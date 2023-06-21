@@ -1,7 +1,6 @@
 from django.db import models
 
 from .mixins import TimestampedModel
-from .proposal_fields import ProposalFields
 
 
 class Proposal(TimestampedModel, models.Model):

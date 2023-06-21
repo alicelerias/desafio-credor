@@ -1,9 +1,9 @@
 from django.contrib import admin
 
-from .models import ProposalFields, Proposal, Response
+from .models import ProposalField, Proposal, Response
 
 
-@admin.register(ProposalFields)
+@admin.register(ProposalField)
 class ProposalFieldsAdmin(admin.ModelAdmin):
     list_display = ("name", "type", "nullable", "order")
     ordering = ["order"]

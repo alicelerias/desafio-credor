@@ -1,16 +1,17 @@
 from django.db import models
-from .proposal_fields import ProposalFields
+
+from .proposal_field import ProposalField
 from .proposal import Proposal
 
 
 class Response(models.Model):
     key = models.ForeignKey(
-        ProposalFields,
+        ProposalField,
         on_delete=models.PROTECT,
         related_name="responses",
         null=False,
     )
-    value = models.TextField(null=False)
+    value = models.TextField(null=True, blank=True)
     proposal = models.ForeignKey(
         Proposal, on_delete=models.CASCADE, related_name="responses", null=False
     )

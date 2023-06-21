@@ -3,7 +3,7 @@ from django.db import models
 from .mixins import TimestampedModel
 
 
-class ProposalFields(TimestampedModel, models.Model):
+class ProposalField(TimestampedModel, models.Model):
     FORM_CHOICES = (
         ("string", "Texto"),
         ("number", "Número"),
@@ -14,7 +14,7 @@ class ProposalFields(TimestampedModel, models.Model):
         max_length=10, choices=FORM_CHOICES, null=False, default="string"
     )
     nullable = models.BooleanField(default=True)
-    # ordem em que os componentes serão mostrados na tela do django admin
+    # order in which components will be shown on the django admin screen
     order = models.FloatField()
 
     def __str__(self) -> str:

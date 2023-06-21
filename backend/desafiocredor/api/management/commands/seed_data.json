@@ -1,0 +1,15 @@
+[
+  {
+      "name": "nome",
+      "type": "string",
+      "nullable": false,
+      "order": 1.0
+  }
+  ,
+  {
+      "name": "valor",
+      "type": "number",
+      "nullable": false,
+      "order": 2.0
+  }
+]

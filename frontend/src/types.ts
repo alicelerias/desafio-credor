@@ -10,7 +10,6 @@ export type ProposalField = {
   type: any;
   nullable: boolean;
   order: number;
-
 };
 
 export type ProposalFields = ProposalField[];
