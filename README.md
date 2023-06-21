@@ -21,6 +21,8 @@
 * react 18.2.0
 * typescript 4.9.5
 
-## Observação
+## Observações
 
 * O estilo do cógido foi formatado utilizando black 23.3.0
+* Caso não rode a seed, o frontend inicia sem os campos do formulário,
+que poderão ser cadastrados no django admin > proposal fields > add proposal field;
