@@ -1,12 +1,12 @@
 # Test Credor
 
-## Running app
+## Rodando a aplicação
 
-- run application: `docker-compose up --build`
-- open form: `localhost:3000`
-- django admin: `localhost:8000/admin`
-  - default user: admin, password: admin
-- seed: if you want to start the admin with default fields: 
+- rodar a aplicação: `docker-compose up --build`
+- abrir o formulário: `localhost:3000`
+- abrir o django admin: `localhost:8000/admin`
+  - default user: admin, senha: admin
+- rode a seed se desejar que o formulário inicie com alguns campos pré cadastrados: 
   - ` cd backend/desafiocredor` ,
   - `python manage.py create_seed_data`
 
@@ -21,6 +21,6 @@
 * react 18.2.0
 * typescript 4.9.5
 
-## Observations
+## Observação
 
-* formatted using black 23.3.0
+* O estilo do cógido foi formatado utilizando black 23.3.0
